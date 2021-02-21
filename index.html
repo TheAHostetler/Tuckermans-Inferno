@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tuckerman's Inferno 2021 Course Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <!-- Adding styling info for page layout by reading in a CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- add features for geocoding -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+  <div id="map"></div>
+  <div class='map-overlay' id='features'>
+    <!-- fly to course -->
+    <button class='fly-button' id="fly-course">Home</button>
+    <!-- fly to start -->
+    <button class='fly-button' id="fly-start">Start</button>
+    <!-- fly to finish -->
+    <button class='fly-button' id="fly-finish">Finish</button>
+    <!-- fly to bike -->
+    <button class='fly-button' id="fly-bike">Fatbike</button>
+    <!-- fly to xc ski -->
+    <button class='fly-button' id="fly-xc">XC Ski</button>
+    <!-- fly to Snowshoe -->
+    <button class='fly-button' id="fly-snowshoe">Snowshoe</button>
+    <!-- fly to Run -->
+    <button class='fly-button' id="fly-run">Run</button>
+    <!-- fly to Ski -->
+    <button class='fly-button' id="fly-ski">Ski</button>
+  </div>
+
+  <script>
+    // Initialize the map
+	   mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hcHBlciIsImEiOiJnZ0FDZWJrIn0.9Vck8ZXqJsSYGAYhKwLsWA';
+     var map = new mapboxgl.Map({
+       container: 'map',
+       style: 'mapbox://styles/amapper/ckld2fleo0w2s17l4xvl75va8',
+       center: [-71.265066, 44.274938],
+       zoom: 11
+    });
+
+
+    map.on('load', function () {
+        map.addSource('mapbox-dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+            'tileSize': 512,
+            'maxzoom': 14
+        });
+        // add the DEM source as a terrain layer with exaggerated height
+        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+        // add a sky layer that will show when the map is highly pitched
+        map.addLayer({
+            'id': 'sky',
+            'type': 'sky',
+            'paint': {
+                'sky-type': 'atmosphere',
+                'sky-atmosphere-sun': [0.0, 0.0],
+                'sky-atmosphere-sun-intensity': 15
+            }
+        });
+    });
+
+    // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
+    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+
+    //Fly to home
+    document.getElementById('fly-course').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.265066, 44.274938],
+            zoom: [11],
+            bearing: 0,
+            pitch: 0,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to start
+    document.getElementById('fly-start').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.2291074, 44.2893603],
+            zoom: [15.37],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to finish
+    document.getElementById('fly-finish').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.2552927, 44.2553966],
+            zoom: [16],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to Bike
+    document.getElementById('fly-bike').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.227, 44.291],
+            zoom: [15.37],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to XC Ski
+    document.getElementById('fly-xc').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.227, 44.291],
+            zoom: [15.37],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to Snowshoe
+    document.getElementById('fly-snowshoe').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.227, 44.291],
+            zoom: [15.37],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to Run
+    document.getElementById('fly-run').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.226, 44.264],
+            zoom: [13],
+            bearing: 0,
+            pitch: 1,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+    //Fly to ski
+    document.getElementById('fly-ski').addEventListener('click', function () {
+        map.flyTo({
+            center: [-71.264, 44.262],
+            zoom: [14],
+            bearing: -88,
+            pitch: 90,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+
+
+</script>
+
+</body>
+
+</html>

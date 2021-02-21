@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #AEADF0;
+}
+
+h1 {
+  color:#2D2A32
+}
+
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.85em;
+  margin: 10px;
+  text-align: left;
+}
+
+/* Create a position for the map on the page */
+#map {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+/*Set rules for how the map overlays (information box and legend) will be displayed on the page. */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.0);
+  margin-right: 0;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 400px;
+  margin-top: 0;
+  width: 250px;
+}
+
+.fly-button {
+  display: block;
+  position: absolute;
+  right: 10px;
+  width: auto;
+  height: 40px;
+  padding: 10px;
+  border: 10px;
+  border-radius:20px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  background: #ee8a65;
+}
+
+
+#fly-course {
+top:10px;
+}
+
+#fly-start {
+top:60px;
+}
+
+#fly-finish {
+top:110px;
+}
+
+#fly-bike {
+top:160px;
+}
+
+#fly-xc {
+top:210px;
+}
+
+#fly-snowshoe {
+top:260px;
+}
+
+#fly-run {
+top:310px;
+}
+
+#fly-ski {
+top:360px;
+}
