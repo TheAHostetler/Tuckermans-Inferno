@@ -32,7 +32,7 @@
   <div id="map"></div>
   <div class='map-overlay' id='features'>
     <!-- fly to course -->
-    <button class='fly-button' id="fly-course">Home</button>
+    <button class='fly-button' id="fly-home">Home</button>
     <!-- fly to start -->
     <button class='fly-button' id="fly-start">Start</button>
     <!-- fly to finish -->
@@ -59,7 +59,7 @@
        zoom: 11
     });
 
-
+/* Blocking out 3-d terrain loading for speed
     map.on('load', function () {
         map.addSource('mapbox-dem', {
             'type': 'raster-dem',
@@ -81,13 +81,14 @@
             }
         });
     });
+*/
 
     // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
 
     //Fly to home
-    document.getElementById('fly-course').addEventListener('click', function () {
+    document.getElementById('fly-home').addEventListener('click', function () {
         map.flyTo({
             center: [-71.265066, 44.274938],
             zoom: [11],
@@ -101,9 +102,9 @@
     document.getElementById('fly-start').addEventListener('click', function () {
         map.flyTo({
             center: [-71.2291074, 44.2893603],
-            zoom: [15.37],
-            bearing: 0,
-            pitch: 1,
+            zoom: [17],
+            bearing: -15,
+            pitch: 80,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });
@@ -122,8 +123,8 @@
     //Fly to Bike
     document.getElementById('fly-bike').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.227, 44.291],
-            zoom: [15.37],
+            center: [-71.229, 44.295],
+            zoom: [13.5],
             bearing: 0,
             pitch: 1,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
@@ -133,7 +134,7 @@
     //Fly to XC Ski
     document.getElementById('fly-xc').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.227, 44.291],
+            center: [-71.229, 44.295],
             zoom: [15.37],
             bearing: 0,
             pitch: 1,
