@@ -32,21 +32,21 @@
   <div id="map"></div>
   <div class='map-overlay' id='features'>
     <!-- fly to course -->
-    <button class='fly-button' id="fly-home">Home</button>
+    <button class='fly-button' id="fly-home"><img src="media/Home.svg" width=35px></button>
     <!-- fly to start -->
-    <button class='fly-button' id="fly-start">Start</button>
+    <button class='fly-button' id="fly-start"><img src="media/Start.svg" width=35px></button>
     <!-- fly to finish -->
-    <button class='fly-button' id="fly-finish">Finish</button>
+    <button class='fly-button' id="fly-finish"><img src="media/Finish.svg" width=35px></button>
     <!-- fly to bike -->
-    <button class='fly-button' id="fly-bike">Fatbike</button>
+    <button class='fly-button' id="fly-bike"><img src="media/Bike.svg" width=35px></button>
     <!-- fly to xc ski -->
-    <button class='fly-button' id="fly-xc">XC Ski</button>
+    <button class='fly-button' id="fly-xc"><img src="media/XC.svg" width=35px></button>
     <!-- fly to Snowshoe -->
-    <button class='fly-button' id="fly-snowshoe">Snowshoe</button>
+    <button class='fly-button' id="fly-snowshoe"><img src="media/Snowshoe.svg" width=35px></button>
     <!-- fly to Run -->
-    <button class='fly-button' id="fly-run">Run</button>
+    <button class='fly-button' id="fly-run"><img src="media/Run.svg" width=35px></button>
     <!-- fly to Ski -->
-    <button class='fly-button' id="fly-ski">Ski</button>
+    <button class='fly-button' id="fly-ski"><img src="media/Ski.svg" width=35px></button>
   </div>
 
   <script>
@@ -59,29 +59,12 @@
        zoom: 11
     });
 
-/* Blocking out 3-d terrain loading for speed
-    map.on('load', function () {
-        map.addSource('mapbox-dem', {
-            'type': 'raster-dem',
-            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-            'tileSize': 512,
-            'maxzoom': 14
-        });
-        // add the DEM source as a terrain layer with exaggerated height
-        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-        // add a sky layer that will show when the map is highly pitched
-        map.addLayer({
-            'id': 'sky',
-            'type': 'sky',
-            'paint': {
-                'sky-type': 'atmosphere',
-                'sky-atmosphere-sun': [0.0, 0.0],
-                'sky-atmosphere-sun-intensity': 15
-            }
-        });
-    });
-*/
+    map.scrollZoom.enable
+    map.dragPan.enable
+    map.dragRotate.enable
+    map.doubleClickZoom.enable
+    map.touchZoomRotate.enable
+    map.touchPitch.enable
 
     // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
@@ -101,10 +84,10 @@
     //Fly to start
     document.getElementById('fly-start').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.2291074, 44.2893603],
-            zoom: [17],
+            center: [-71.2291074, 44.2963603],
+            zoom: [13.2],
             bearing: -15,
-            pitch: 80,
+            pitch: 50,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });
@@ -112,10 +95,10 @@
     //Fly to finish
     document.getElementById('fly-finish').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.2552927, 44.2553966],
-            zoom: [16],
-            bearing: 0,
-            pitch: 1,
+            center: [-71.271, 44.2599966],
+            zoom: [12.8],
+            bearing: -105,
+            pitch: 60,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });
@@ -145,10 +128,10 @@
     //Fly to Snowshoe
     document.getElementById('fly-snowshoe').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.240, 44.275],
-            zoom: [13.3],
-            bearing:-116.35,
-            pitch:67,
+            center: [-71.236, 44.277],
+            zoom: [13.1],
+            bearing:-136.35,
+            pitch:50,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });
@@ -156,10 +139,10 @@
     //Fly to Run
     document.getElementById('fly-run').addEventListener('click', function () {
         map.flyTo({
-            center: [-71.228, 44.264],
-            zoom: [13],
-            bearing: 0,
-            pitch: 1,
+            center: [-71.240, 44.264],
+            zoom: [12.4],
+            bearing: -90,
+            pitch: 20,
             essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });

@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #AEADF0;
 }
 
 h1 {
@@ -37,7 +36,6 @@ p {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.0);
   margin-right: 0;
   font-family: Arial, sans-serif;
   overflow: auto;
@@ -46,7 +44,7 @@ p {
 
 #features {
   top: 0;
-  height: 400px;
+  height: 420px;
   margin-top: 0;
   width: 250px;
 }
@@ -56,14 +54,13 @@ p {
   position: absolute;
   right: 10px;
   width: auto;
-  height: 40px;
-  padding: 10px;
+  height: 41px;
+  padding:3px;
   border: 10px;
   border-radius:20px;
   font-size: 20px;
   text-align: center;
-  color: #fff;
-  background: #ee8a65;
+  background-color: #5cb2f5;
 }
 
 
