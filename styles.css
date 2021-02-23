@@ -38,15 +38,22 @@ p {
   right: 0;
   margin-right: 0;
   font-family: Arial, sans-serif;
-  overflow: auto;
-  border-radius: 3px;
+  border-radius: 0px;
 }
 
 #features {
   top: 0;
-  height: 420px;
+  height: 450px;
   margin-top: 0;
-  width: 250px;
+  width: 100px;
+  background-color: blue;
+}
+
+#logo {
+  height: 300px;
+  margin-bottom: 0px;
+  margin-right: 25%;
+  width: 50%;
 }
 
 .fly-button {
@@ -58,11 +65,11 @@ p {
   padding:3px;
   border: 10px;
   border-radius:20px;
-  font-size: 20px;
-  text-align: center;
   background-color: #5cb2f5;
+  font-size: 18px;
+  text-align: left;
+  color: white;
 }
-
 
 #fly-home {
 top:10px;
@@ -78,6 +85,7 @@ top:110px;
 
 #fly-bike {
 top:160px;
+
 }
 
 #fly-xc {
