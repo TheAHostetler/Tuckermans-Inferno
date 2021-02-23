@@ -49,6 +49,13 @@ p {
   width: 250px;
 }
 
+#logo {
+  height: 300px;
+  margin-bottom: 0px;
+  margin-right: 25%;
+  width: 50%;
+}
+
 .fly-button {
   display: block;
   position: absolute;
