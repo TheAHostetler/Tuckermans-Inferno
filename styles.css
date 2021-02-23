@@ -44,7 +44,7 @@ p {
 
 #features {
   top: 0;
-  height: 420px;
+  height: 80%;
   margin-top: 0;
   width: 250px;
 }
@@ -59,8 +59,9 @@ p {
   border: 10px;
   border-radius:20px;
   font-size: 20px;
-  text-align: center;
+  text-align: right;
   background-color: #5cb2f5;
+  color: white;
 }
 
 
@@ -78,6 +79,7 @@ top:110px;
 
 #fly-bike {
 top:160px;
+
 }
 
 #fly-xc {
