@@ -52,7 +52,8 @@
        center: [-71.265066, 44.274938],
        zoom: 11
     });
-
+    
+    map.addControl(new mapboxgl.FullscreenControl());
     map.scrollZoom.enable
     map.dragPan.enable
     map.dragRotate.enable
@@ -151,6 +152,9 @@
           essential: true // this animation is considered essential with respect to prefers-reduced-motion
         });
     });
+
+          // Set cursor style
+    map.getCanvas().style.cursor = 'pointer';
 
 
 </script>
