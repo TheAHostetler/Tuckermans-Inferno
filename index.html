@@ -52,8 +52,7 @@
        center: [-71.265066, 44.274938],
        zoom: 11
     });
-    
-    map.addControl(new mapboxgl.FullscreenControl());
+
     map.scrollZoom.enable
     map.dragPan.enable
     map.dragRotate.enable
@@ -61,8 +60,10 @@
     map.touchZoomRotate.enable
     map.touchPitch.enable
 
-    // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
+    // Add controls
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+    map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+
 
 
     //Fly to home
