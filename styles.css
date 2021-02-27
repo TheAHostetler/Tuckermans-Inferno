@@ -31,7 +31,7 @@ p {
   bottom: 0;
 }
 
-/*Set rules for how the map overlays (information box and legend) will be displayed on the page. */
+/*Set rules for how the map overlays (buttons, information, legend) will be displayed on the page. */
 .map-overlay {
   position: absolute;
   bottom: 0;
@@ -40,7 +40,6 @@ p {
   font-family: Arial, sans-serif;
   border-radius: 0px;
 }
-
 #features {
   top: 0;
   height: 450px;
@@ -48,14 +47,6 @@ p {
   width: 100px;
   background-color:;
 }
-
-#logo {
-  height: 300px;
-  margin-bottom: 0px;
-  margin-right: 25%;
-  width: 50%;
-}
-
 .fly-button {
   display: block;
   position: absolute;
@@ -70,36 +61,54 @@ p {
   text-align: left;
   color: white;
 }
-
 #fly-home {
 top:10px;
 }
-
 #fly-start {
 top:60px;
 }
-
 #fly-finish {
 top:110px;
 }
-
 #fly-bike {
 top:160px;
-
 }
-
 #fly-xc {
 top:210px;
 }
-
 #fly-snowshoe {
 top:260px;
 }
-
 #fly-run {
 top:310px;
 }
-
 #fly-ski {
 top:360px;
+}
+
+
+#controls {
+  width: 0px;
+  top: 10px;
+  left: 8px;
+  margin-right: 10px;
+  background-color: #000000;
+}
+.button-control {
+  display: block;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  border-radius:5px;
+  background-color: white;
+  padding: 4px;
+  color: black;
+  border: 2px solid rgba(223, 223, 223, 63);
+}
+#button-icon{
+  width: 21px;
+  height: 21px;
+}
+#button-fullscreen {
+  top: 94px;
 }
