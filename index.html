@@ -44,12 +44,12 @@
   </div>
 
   <div class='map-overlay' id='controls'>
-    <span class="button-control" id="button-fullscreen"><a href="https://theahostetler.github.io/El-Sendero-Pacifico/index-mapbox" target="blank"> <img id=button-icon src="media/button-fullscreen.svg"></img></a></span>
+    <span class="button-control" id="button-fullscreen"><a href="https://theahostetler.github.io/Tuckermans-Inferno/index.html" target="blank"> <img id=button-icon src="media/button-fullscreen.svg"></img></a></span>
   </div>
 
   <script>
     // Initialize the map
-	   mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hcHBlciIsImEiOiJnZ0FDZWJrIn0.9Vck8ZXqJsSYGAYhKwLsWA';
+     mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hcHBlciIsImEiOiJnZ0FDZWJrIn0.9Vck8ZXqJsSYGAYhKwLsWA';
      var map = new mapboxgl.Map({
        container: 'map',
        style: 'mapbox://styles/amapper/ckld2fleo0w2s17l4xvl75va8',
@@ -71,113 +71,137 @@
     map.on('load', function () {
       map.addSource('route', {
         'type': 'geojson',
-        'data': "data/Tuckstrails.json",
-      });
-      map.addLayer({
-        'id': 'route',
-        'type': 'line',
-        'source': 'route',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': 'rgba(0, 0, 0, .5)',
-          'line-width': 8,
-        }
+        'data': "https://theahostetler.github.io/Tuckermans-Inferno/data/TucksTrails.json",
       });
     });
 
+    var currentMode = ''
+    function highlightLayer (mode){
+      if (mode == currentMode) {
+        map.removeLayer('route');
+        currentMode = '';
+      } else {
+        map.removeLayer('route');
+        map.addLayer({
+          'id': 'route',
+          'type': 'line',
+          'source': 'route',
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': 'rgba(255, 246, 0, 0.5)',
+            'line-width': 8,
+            'line-blur': 4,
+            'line-gap-width': 8,
+          },
+          'filter': ['==', "Mode", mode],
+        });
+        currentMode = mode;
+      };
+    }
+
     //Fly to home
     document.getElementById('fly-home').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.265066, 44.274938],
-            zoom: [11],
-            bearing: 0,
-            pitch: 0,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer("Home")
+      map.flyTo({
+          center: [-71.265066, 44.274938],
+          zoom: [11],
+          bearing: 0,
+          pitch: 0,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
+      map.setFilterProperty
+      map.setPaintProperty(layer.value, 'fill-color', color);
     });
 
     //Fly to start
     document.getElementById('fly-start').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.2291074, 44.2963603],
-            zoom: [13.2],
-            bearing: -15,
-            pitch: 50,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer("Start")
+      map.flyTo({
+          center: [-71.2291074, 44.2963603],
+          zoom: [13.2],
+          bearing: -15,
+          pitch: 50,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to finish
     document.getElementById('fly-finish').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.271, 44.2599966],
-            zoom: [12.8],
-            bearing: -105,
-            pitch: 60,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer("Finish")
+      map.flyTo({
+          center: [-71.271, 44.2599966],
+          zoom: [12.8],
+          bearing: -105,
+          pitch: 60,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to Bike
     document.getElementById('fly-bike').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.229, 44.295],
-            zoom: [13.5],
-            bearing: 0,
-            pitch: 1,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer("Bike")
+      map.flyTo({
+          center: [-71.229, 44.295],
+          zoom: [13.5],
+          bearing: 0,
+          pitch: 1,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to XC Ski
     document.getElementById('fly-xc').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.229, 44.295],
-            zoom: [13.5],
-            bearing: 0,
-            pitch: 1,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer("XC")
+      map.flyTo({
+          center: [-71.229, 44.295],
+          zoom: [13.5],
+          bearing: 0,
+          pitch: 1,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to Snowshoe
     document.getElementById('fly-snowshoe').addEventListener('click', function () {
-        map.flyTo({
-            center: [-71.236, 44.277],
-            zoom: [13.1],
-            bearing:-136.35,
-            pitch:50,
-            essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer('Snowshoe');
+      map.flyTo({
+          center: [-71.246, 44.272],
+          zoom: [13.1],
+          bearing: 0,
+          pitch: 0,
+          essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to Run
     document.getElementById('fly-run').addEventListener('click', function () {
-        map.flyTo({
-          center: [-71.271, 44.2599966],
-          zoom: [12.8],
-          bearing: -105,
-          pitch: 60,
-          essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer('Run');
+      map.flyTo({
+        center: [-71.275, 44.256],
+        zoom: [12.8],
+        bearing: -72,
+        pitch: 0,
+        essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
     //Fly to ski
     document.getElementById('fly-ski').addEventListener('click', function () {
-        map.flyTo({
-          center: [-71.271, 44.2599966],
-          zoom: [12.8],
-          bearing: -105,
-          pitch: 60,
-          essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+      highlightLayer('Ski');
+      map.flyTo({
+        center: [-71.275, 44.256],
+        zoom: [12.8],
+        bearing: -72,
+        pitch: 0,
+        essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
 
           // Set cursor style
-    map.getCanvas().style.cursor = 'pointer';
+    map.getCanvas().style.cursor = 'default';
 
 
 </script>
