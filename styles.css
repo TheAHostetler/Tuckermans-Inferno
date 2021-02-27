@@ -40,7 +40,7 @@ p {
   font-family: Arial, sans-serif;
   border-radius: 0px;
 }
-#features {
+#legend {
   top: 0;
   height: 450px;
   margin-top: 0;
@@ -111,4 +111,20 @@ top:360px;
 }
 #button-fullscreen {
   top: 94px;
+}
+#button-instructions {
+  top: 134px;
+  text-align: center;
+  font: 18px bold;
+}
+
+#title {
+  position: relative;
+  margin: auto;
+  width: 0px;
+  height: 0px;
+  right: 75px;
+  top: 10px;
+  background-color: #000000;
+  text-align: center;
 }
