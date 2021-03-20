@@ -23,10 +23,14 @@
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
+  <!-- Basemap -->
   <div id="map"></div>
+
+  <!-- Map overlays -->
   <div class='map-overlay' id='legend'>
     <!-- fly to course -->
     <button class='fly-button' id="fly-home"><img src="media/Home.svg" width=35px></button>
+    <span class='legend-dist' id='dist-bike'>6MI</span>
     <!-- fly to start -->
     <button class='fly-button' id="fly-start"><img src="media/Start.svg" width=35px></button>
     <!-- fly to finish -->
@@ -48,18 +52,32 @@
     <span class="button-control" id="button-instructions"> ? </img></span>
   </div>
 
+  <div class='map-overlay' id='splash'>
+    <span>Splash!</span>
+  </div>
+
   <div class='map-overlay' id='title'>
     <img width=150px src='media/Logo_TucksInferno.svg'></img>
   </div>
 
   <script>
     // Initialize the map
-     mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hcHBlciIsImEiOiJnZ0FDZWJrIn0.9Vck8ZXqJsSYGAYhKwLsWA';
-     var map = new mapboxgl.Map({
-       container: 'map',
-       style: 'mapbox://styles/amapper/ckld2fleo0w2s17l4xvl75va8',
-       center: [-71.265066, 44.274938],
-       zoom: 11
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hcHBlciIsImEiOiJnZ0FDZWJrIn0.9Vck8ZXqJsSYGAYhKwLsWA';
+    // Set bounds to New York, New York
+    var bounds = [
+      [-71.131025, 44.404617], // Southwest coordinates
+      [-71.416843, 44.078090] // Northeast coordinates
+    ];
+
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/amapper/ckld2fleo0w2s17l4xvl75va8',
+      center: [-71.265066, 44.274938],
+      zoom: 11,
+      /* Bounding does not work
+      maxBounds: bounds
+      */
+      attributionControl: false,
     });
 
     map.scrollZoom.enable
@@ -69,10 +87,19 @@
     map.touchZoomRotate.enable
     map.touchPitch.enable
 
+    var defaultAttribute = map.addControl(new mapboxgl.AttributionControl({
+    compact: false,
+    }));
+
+    var altAttribute = map.addControl(new mapboxgl.AttributionControl({
+    compact: true,
+    customAttribution: "bike wheel by Dolly Holmes from the Noun Project, Cross Country Skiing icon by Icons8, Ski Touring by Felix Grossar from the Noun Project, Cross-Country Skiing by Tamiko Young from the Noun Project, run by Gleb Khorunzhiy from the Noun Project, start by The Icon Z from the Noun Project, Mountain by Zach Bogart from the Noun Project, Home by Weltenraser from the Noun Project, Fullscreen by Luboš Volkov from the Noun Project, Arrow by Simon Brown from the Noun Project",
+    }));
+
     // Add controls
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
-    // Add features to map
+    // load data to map
     map.on('load', function () {
       map.addSource('route', {
         'type': 'geojson',
@@ -80,6 +107,10 @@
       });
     });
 
+    //Custom map cursor
+    map.getCanvas().style.cursor = 'default';
+
+    //Highlight trail segments
     var currentMode = ''
     function highlightLayer (mode){
       if (mode == currentMode) {
@@ -107,7 +138,8 @@
       };
     }
 
-    //Fly to home
+    //Set legend button actions
+    //Home
     document.getElementById('fly-home').addEventListener('click', function () {
       highlightLayer("Home")
       map.flyTo({
@@ -117,11 +149,9 @@
           pitch: 0,
           essential: true // this animation is considered essential with respect to prefers-reduced-motion
       });
-      map.setFilterProperty
-      map.setPaintProperty(layer.value, 'fill-color', color);
     });
 
-    //Fly to start
+    //Start
     document.getElementById('fly-start').addEventListener('click', function () {
       highlightLayer("Start")
       map.flyTo({
@@ -133,7 +163,7 @@
       });
     });
 
-    //Fly to finish
+    //Finish
     document.getElementById('fly-finish').addEventListener('click', function () {
       highlightLayer("Finish")
       map.flyTo({
@@ -145,7 +175,7 @@
       });
     });
 
-    //Fly to Bike
+    //Bike
     document.getElementById('fly-bike').addEventListener('click', function () {
       highlightLayer("Bike")
       map.flyTo({
@@ -157,7 +187,7 @@
       });
     });
 
-    //Fly to XC Ski
+    //XC Ski
     document.getElementById('fly-xc').addEventListener('click', function () {
       highlightLayer("XC")
       map.flyTo({
@@ -169,23 +199,23 @@
       });
     });
 
-    //Fly to Snowshoe
+    //Snowshoe
     document.getElementById('fly-snowshoe').addEventListener('click', function () {
       highlightLayer('Snowshoe');
       map.flyTo({
-          center: [-71.246, 44.272],
-          zoom: [13.1],
+          center: [-71.246, 44.287],
+          zoom: [12.8],
           bearing: 0,
           pitch: 0,
           essential: true // this animation is considered essential with respect to prefers-reduced-motion
       });
     });
 
-    //Fly to Run
+    //Run
     document.getElementById('fly-run').addEventListener('click', function () {
       highlightLayer('Run');
       map.flyTo({
-        center: [-71.275, 44.256],
+        center: [-71.290, 44.264],
         zoom: [12.8],
         bearing: -72,
         pitch: 0,
@@ -193,11 +223,11 @@
       });
     });
 
-    //Fly to ski
+    //Ski
     document.getElementById('fly-ski').addEventListener('click', function () {
       highlightLayer('Ski');
       map.flyTo({
-        center: [-71.275, 44.256],
+        center: [-71.290, 44.264],
         zoom: [12.8],
         bearing: -72,
         pitch: 0,
@@ -205,8 +235,12 @@
       });
     });
 
-          // Set cursor style
-    map.getCanvas().style.cursor = 'default';
+    //Create Splash
+/*
+    document.getElementbyID('button-instructions').addEventListener('click', function()){
+      document.createElement(),
+    };
+    */
 
 
 </script>
